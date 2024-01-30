@@ -1,0 +1,51 @@
+apiversion: apps/v1
+kind: 	Deployment
+metadata:
+  name: jenkins
+spec:
+  minReadySeconds: 5
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jenkins
+  strategy:
+    type: rollingUpdate
+    rollingUpdate: 
+      maxSurge: 25%
+      maxUnavailable: 30%       
+    template:
+      metadata:
+        labels:
+          app: jenkins
+      spec:
+        containers:
+        - name: jenkins
+          image: jenkins/jenkins:jdk-17
+        ports:
+          containerPort: 80
+        - name: http-port
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: 500m
+             
+
+
+---
+apiversion: v1
+kind: Service
+metadata:
+  name: jenkins-svc
+spec:
+  type: nondport
+  selector:
+    app: jenkins
+    ports:
+    - name: jenkins
+      port: 80
+      targetPort: 80
+      nodePort: 30001
+
+
+
+
