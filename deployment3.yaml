@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: httpd
+          image: nginx
           ports:
             - containerPort: 80
           resources:
