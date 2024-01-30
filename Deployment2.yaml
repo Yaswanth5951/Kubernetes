@@ -17,10 +17,11 @@ spec:
     metadata:
       labels:
         app: jenkins
+        ver: "v1.0"
     spec:
       containers:
       - name: jenkins
-        image: jenkins/jenkins:jdk-17
+        image: jenkins/jenkins:jdk-11
         ports:
         - name: http-port
           containerPort: 8080
@@ -43,7 +44,7 @@ spec:
     - name: jenkins
       port: 8080
       targetPort: 8080
-      nodePort: 30001
+      nodePort: 30009
   
 
 
