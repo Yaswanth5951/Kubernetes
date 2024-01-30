@@ -4,15 +4,15 @@ kind: Deployment
 metadata:
   name: jenkins
 spec:
-  replicas: 3
+  replicas: 10
   selector:
     matchLabels:
       app: jenkins
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 30%
+      maxSurge: 40%
+      maxUnavailable: 40%
   template:
     metadata:
       labels:
@@ -28,7 +28,6 @@ spec:
           limits:
             memory: 256Mi
             cpu: 500m
-
 
 
 ---
