@@ -39,12 +39,12 @@ spec:
   type: Nondport
   selector:
     app: jenkins
-    ports:
+  ports:
     - name: jenkins
       port: 80
       targetPort: 80
       nodePort: 30001
-
+  
 
 
 
