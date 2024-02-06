@@ -10,33 +10,32 @@ spec:
       app: httpd
   template:
     metadata:
-      name: httpd
+      labels:
+        app: httpd
     spec:
       containers:
-        image: httpd:latest
       - name: apache-con
+        image: httpd:latest
         ports:
         - containerPort: 80
-        image: alpine:latest
-      - name: alpine-con 
         args:
         - sleep
-        - ld
-          
+        - "ld"
+
 ---
-apiVersion: apps/v1
+apiVersion: v1
 kind: Service
 metadata:
   name: httpd-svc
 spec:
   type: NodePort
   selector:
-     app: httpd  
-ports:
-- name: httpd
-  port: 80
+    app: httpd
+  ports:
+  - name: httpd
+    port: 80
     targetPort: 80
-    nodePort: 30001                     
+    nodePort: 30001
 
 
     
