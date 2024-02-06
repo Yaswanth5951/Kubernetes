@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-httpd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: httpd
+  template:
+    metadata:
+      name: httpd
+    spec:
+      containers:
+        image: httpd:latest
+      - name: apache-con
+        ports:
+        - containerPort: 80
+        image: alpine:latest
+      - name: alpine-con 
+        args:
+        - sleep
+        - ld
+          
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: httpd-svc
+spec:
+  type: NodePort
+  selector:
+     app: httpd  
+ports:
+- name: httpd
+  port: 80
+    targetPort: 80
+    nodePort: 30001                     
+
+
+    
