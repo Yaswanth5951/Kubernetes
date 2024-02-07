@@ -20,9 +20,9 @@ spec:
         spec:
           restartPolicy: Never
           containers:
-              image: alpine:latest
-            - name: alpine
-              args:
+             - name: alpine
+               image: alpine:latest
+               args:
                 - sleep
                 - 30s
           
