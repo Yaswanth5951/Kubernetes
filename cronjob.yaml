@@ -1,29 +1,26 @@
 ---
-apiVersion: bacth/v1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: cron-job
+  name: dummy-cj
 spec:
   schedule: "* * * * *"
   jobTemplate:
     metadata:
-      name: cron-job
-      label: 
-        app: job
+      name: dummy-job
     spec:
-      selector:
-        matchLabels:
-          app: cron-job
       template:
         metadata:
-          name: cron-pod
+          name: dummy-pod
+          labels:
+            app: job
         spec:
           restartPolicy: Never
           containers:
-             - name: alpine
-               image: alpine
-               args:
+            - name: dummy-ctr
+              image: alpine
+              args:
                 - sleep
                 - 30s
-          
+        
     
