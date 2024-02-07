@@ -1,0 +1,29 @@
+---
+apiVersion: bacth/v1
+kind: CronJob
+metadata:
+  name: cron-job
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    metadata:
+      name: cron-job
+      label: 
+        app: job
+    spec:
+      selector:
+        matchLabels:
+          app: cron-job
+      template:
+        metadata:
+          name: cron-pod
+        spec:
+          restartPolicy: Never
+          containers:
+              image: alpine:latest
+            - name: alpine
+              args:
+                - sleep
+                - 30s
+          
+    
