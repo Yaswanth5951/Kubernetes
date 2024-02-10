@@ -26,10 +26,10 @@ spec:
           image: httpd:latest
       ports:
         containerPort: 80
-          resources:
-            limits:
-              memory: 256Mi
-              cpu: 500m
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: 500m
       readinessProbe:
         httpGet:
           path: /
